@@ -5,6 +5,7 @@ let answer = "";
 let blanksShown = [];
 let blanks = document.getElementById('blanks');
 const showRemGuesses = document.getElementById('guessesLeft');
+const guessList = document.getElementById('lettersGuessed');
 
 const resetGameBtn = document.getElementById('resetGameBtn');
 resetGameBtn.addEventListener('click', initialize);
@@ -15,6 +16,7 @@ alphabetBtns.forEach(btn => btn.addEventListener('click', checkGuess));
 function initialize (){
     blanksShown = [];
     wrongLetterGuesses = [];
+    guessList.innerHTML = `Wrong Letters: ${wrongLetterGuesses.join(" ")}`;
     setSecretWord();
     showRemGuesses.innerHTML = '10 guesses remaining!';
 }
@@ -54,6 +56,7 @@ function checkGuess(event) {
         guessesRem--;
         showRemGuesses.innerHTML = `${guessesRem} guesses remaining!`;
         wrongLetterGuesses.push(selectedLetter);
+        guessList.innerHTML = `Wrong Letters: ${wrongLetterGuesses.join(" ")}`;
     }
     if (guessesRem === 0) {
         showRemGuesses.innerHTML = `Walt and Jesse were caught! :( The answer was "${answer}". Click "Reset Game" to play again!`;
