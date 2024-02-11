@@ -23,6 +23,7 @@ function initialize (){
     guessList.innerHTML = `Wrong Letters: ${wrongLetterGuesses.join(" ")}`;
     setSecretWord();
     showRemGuesses.innerHTML = '10 guesses remaining!';
+    showRemGuesses.classList.remove("lastGuess");
 }
 
 initialize();
@@ -69,6 +70,7 @@ function checkGuess(event) {
     }
     else if (guessesRem === 1) {
         showRemGuesses.innerHTML = `${guessesRem} guess remaining!`;
+        showRemGuesses.classList.add("lastGuess");
     }
     showPicture();
 }
