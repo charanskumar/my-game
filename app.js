@@ -1,5 +1,5 @@
 const possibleWords = ["Walter-White", "Gus-Fring", "Heisenberg", "Salamanca", "Skyler-White", "Los-Pollos", "Albuquerque", "Jesse-Pinkman", "Tuco-Salamanca", "Steve-Gomez", "Hank-Schrader", "Saul-Goodman", "Huell", "Madrigal", "Don-Eladio", "Juan-Bolsa", "mule", "dead-drop", "lawyer", "agent", "New-Mexico", "Gilligan", "cancer", "Mike-Ehrmantraut", "desert", "Holly", "Flynn", "Junior", "Marie-Schrader", "Todd", "Uncle-Jack", "methylamine", "Gale-Boetticher", "chemistry", "Gray-Matter", "illegal", "prison", "Jane-Margolis", "precursor", "rolling-lab", "Hector", "Lydia", "Badger", "Bogdan", "car-wash", "laundromat", "superlab", "Andrea", "Skinny-Pete", "Krazy-Eight", "Tyrus", "Kuby", "twins", "Ted-Beneke", "Gretchen", "Elliot", "Declan", "Wendy", "Victor", "Combo", "ricin", "empire", "cartel"];
-let prevLetterGuesses = [];
+let wrongLetterGuesses = [];
 let guessesRem = 10;
 let answer = "";
 let blanksShown = [];
@@ -13,6 +13,8 @@ const alphabetBtns = document.querySelectorAll("#letter");
 alphabetBtns.forEach(btn => btn.addEventListener('click', checkGuess));
 
 function initialize (){
+    blanksShown = [];
+    wrongLetterGuesses = [];
     setSecretWord();
     showRemGuesses.innerHTML = '10 guesses remaining!';
 }
@@ -37,4 +39,28 @@ function showWordBlanks(word) {
         }
     }
     return blanksShown.join(" ");
+}
+
+function checkGuess(event) {
+    let selectedLetter = event.target.value;
+    for (let i = 0; i < answer.length; i++) {
+        if (answer[i].toUpperCase() === selectedLetter) {
+            blanksShown.splice(i, 1, selectedLetter);
+            blanks.innerHTML = blanksShown.join(" ");
+            showRemGuesses.innerHTML = `${guessesRem} guesses remaining!`;
+        }
+    }
+    if (answer.toUpperCase().indexOf(selectedLetter) === -1) {
+        guessesRem--;
+        showRemGuesses.innerHTML = `${guessesRem} guesses remaining!`;
+        wrongLetterGuesses.push(selectedLetter);
+    }
+    if (guessesRem === 0) {
+        showRemGuesses.innerHTML = `Walt and Jesse were caught! :( The answer was "${answer}". Click "Reset Game" to play again!`;
+    } else if ((guessesRem > 0) && (!blanksShown.includes('_'))) {
+        showRemGuesses.innerHTML = "Congrats! Walt and Jesse were able to escape because you guessed the word!";
+    }
+    else if (guessesRem === 1) {
+        showRemGuesses.innerHTML = `${guessesRem} guess remaining!`;
+    }
 }
