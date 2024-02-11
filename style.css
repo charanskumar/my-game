@@ -42,3 +42,11 @@ button {
 #blanks {
     font-size: 25px;
 }
+
+#gamePicture > img {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
