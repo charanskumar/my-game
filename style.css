@@ -11,6 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
 }
 
 #resetGameBtn {
@@ -34,13 +35,17 @@ button {
     align-items: center;
 }
 
+.guessesAndBlanks > #lettersGuessed {
+    font-size: 23px;
+}
+
 #guessesLeft {
     font-size: 25px;
-    color: black
+    color: whitesmoke;
 }
 
 #blanks {
-    font-size: 25px;
+    font-size: 30px;
 }
 
 #gamePicture > img {
