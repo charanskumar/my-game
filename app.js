@@ -6,6 +6,12 @@ let blanksShown = [];
 let blanks = document.getElementById('blanks');
 const showRemGuesses = document.getElementById('guessesLeft');
 
+const resetGameBtn = document.getElementById('resetGameBtn');
+resetGameBtn.addEventListener('click', initialize);
+
+const alphabetBtns = document.querySelectorAll("#letter");
+alphabetBtns.forEach(btn => btn.addEventListener('click', checkGuess));
+
 function initialize (){
     setSecretWord();
     showRemGuesses.innerHTML = '10 guesses remaining!';
