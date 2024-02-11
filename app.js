@@ -6,6 +6,7 @@ let blanksShown = [];
 let blanks = document.getElementById('blanks');
 const showRemGuesses = document.getElementById('guessesLeft');
 const guessList = document.getElementById('lettersGuessed');
+let gameImg = document.createElement('img');
 
 const resetGameBtn = document.getElementById('resetGameBtn');
 resetGameBtn.addEventListener('click', initialize);
@@ -16,6 +17,9 @@ alphabetBtns.forEach(btn => btn.addEventListener('click', checkGuess));
 function initialize (){
     blanksShown = [];
     wrongLetterGuesses = [];
+    guessesRem = 10;
+    gameImg.src = 'images/gamepic.jpeg';
+    document.getElementById('gamePicture').appendChild(gameImg);
     guessList.innerHTML = `Wrong Letters: ${wrongLetterGuesses.join(" ")}`;
     setSecretWord();
     showRemGuesses.innerHTML = '10 guesses remaining!';
@@ -65,5 +69,15 @@ function checkGuess(event) {
     }
     else if (guessesRem === 1) {
         showRemGuesses.innerHTML = `${guessesRem} guess remaining!`;
+    }
+    showPicture();
+}
+
+function showPicture() {
+    if ((guessesRem > 0) && (!blanksShown.includes('_'))) {
+        gameImg.src = '/images/winpic.jpeg';
+    }
+    if (guessesRem === 0) {
+        gameImg.src = '/images/lossgif.gif';
     }
 }
