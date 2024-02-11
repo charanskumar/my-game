@@ -2,6 +2,8 @@ const possibleWords = ["Walter-White", "Gus-Fring", "Heisenberg", "Salamanca", "
 let prevLetterGuesses = [];
 let guessesRem = 10;
 let answer = "";
+let blanksShown = [];
+let blanks = document.getElementById('blanks');
 
 function initialize (){
     setSecretWord();
@@ -13,4 +15,18 @@ function setSecretWord() {
     const secretWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
     answer = secretWord;
     console.log(secretWord);
+    blanks.innerHTML = showWordBlanks(secretWord);
+}
+
+function showWordBlanks(word) {
+    let wordBlanks = word.split("");
+    for (let i = 0; i < answer.length; i++) {
+        if (answer[i] === "-") {
+            blanksShown.push("-");
+        }
+        else {
+            blanksShown.push("_");
+        }
+    }
+    return blanksShown.join(" ");
 }
