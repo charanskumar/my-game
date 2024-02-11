@@ -4,9 +4,11 @@ let guessesRem = 10;
 let answer = "";
 let blanksShown = [];
 let blanks = document.getElementById('blanks');
+const showRemGuesses = document.getElementById('guessesLeft');
 
 function initialize (){
     setSecretWord();
+    showRemGuesses.innerHTML = '10 guesses remaining!';
 }
 
 initialize();
