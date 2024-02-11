@@ -2,3 +2,15 @@ const possibleWords = ["Walter-White", "Gus-Fring", "Heisenberg", "Salamanca", "
 let prevLetterGuesses = [];
 let guessesRem = 10;
 let answer = "";
+
+function initialize (){
+    setSecretWord();
+}
+
+initialize();
+
+function setSecretWord() {
+    const secretWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
+    answer = secretWord;
+    console.log(secretWord);
+}
