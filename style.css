@@ -24,3 +24,21 @@ button {
     font-size: 20px;
     margin: 3px;
 }
+
+.guessesAndBlanks {
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#guessesLeft {
+    font-size: 25px;
+    color: black
+}
+
+#blanks {
+    font-size: 25px;
+}
