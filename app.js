@@ -80,9 +80,9 @@ function showPicture() {
     if ((guessesRem > 0) && (!blanksShown.includes('_'))) {
         showRemGuesses.classList.remove("lastGuess");
         showRemGuesses.classList.add("rightAnswer");
-        gameImg.src = '/images/winpic.jpeg';
+        gameImg.src = 'images/winpic.jpeg';
     }
     if (guessesRem === 0) {
-        gameImg.src = '/images/lossgif.gif';
+        gameImg.src = 'images/lossgif.gif';
     }
 }
